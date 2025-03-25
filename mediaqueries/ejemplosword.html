@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bucle for...of en JavaScript</title>
+</head>
+<body>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 25px;
+                background-color: #f8f9fa;
+                color: #333;
+            }
+            h1 {
+                color: #e67e22;
+                text-align: center;
+                margin-bottom: 30px;
+                border-bottom: 2px solid #e67e22;
+                padding-bottom: 10px;
+            }
+            .container {
+                background-color: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .code-example {
+                background-color: #fef6e9;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 5px solid #e67e22;
+                margin: 25px 0;
+                overflow-x: auto;
+            }
+            button {
+                background-color: #e67e22;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+                margin: 15px 10px 15px 0;
+                transition: all 0.3s;
+            }
+            button:hover {
+                background-color: #d35400;
+                transform: translateY(-2px);
+            }
+            #resultado {
+                margin-top: 30px;
+                padding: 20px;
+                background-color: #fdf2e9;
+                border-radius: 8px;
+                border-left: 5px solid #e67e22;
+            }
+            .array-item {
+                padding: 10px 15px;
+                margin: 8px 0;
+                background-color: #f5cba7;
+                border-radius: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .index {
+                font-weight: bold;
+                color: #a04000;
+                margin-right: 15px;
+            }
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin: 20px 0;
+            }
+            .example-section {
+                margin: 30px 0;
+            }
+            h2 {
+                color: #e67e22;
+                margin-top: 30px;
+            }
+            .note {
+                background-color: #f0f0f0;
+                padding: 15px;
+                border-left: 4px solid #7f8c8d;
+                margin: 20px 0;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bucle for...of en JavaScript</h1>
+            
+            
+                    <p>Este código imprimirá cada elemento del array en la consola.</p>
+                </div>
+                
+                <div class="controls">
+                    <button onclick="ejecutarEjemploBasico()">Ejecutar Ejemplo Básico</button>
+                    <button onclick="limpiarResultados()">Limpiar Resultados</button>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h2>Ejemplo con Array de Objetos</h2>
+              
+                </div>
+                <button onclick="ejecutarEjemploObjetos()">Ejecutar Ejemplo con Objetos</button>
+            </div>
+            
+            <div class="example-section">
+                <h2>Ejemplo con String</h2>
+                    <p>Itera sobre cada caracter del string.</p>
+                </div>
+                <button onclick="ejecutarEjemploString()">Ejecutar Ejemplo con String</button>
+            </div>
+            
+            <div class="example-section">
+                <h2>Personaliza tu Array</h2>
+                <div class="code-example">
+                    <p>Ingresa elementos separados por comas:</p>
+                    <input type="text" id="arrayInput" value="perro,gato,conejo,pez" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+                    <button onclick="ejecutarArrayPersonalizado()">Iterar sobre mi Array</button>
+                </div>
+            </div>
+            
+            <div id="resultado"></div>
+        </div>
+    
+        <script>
+            function mostrarResultado(titulo, contenido, tipo = 'array') {
+                const resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = `<h2>${titulo}</h2>`;
+                
+                if (tipo === 'array') {
+                    contenido.forEach((item, index) => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'array-item';
+                        itemDiv.innerHTML = `<span class="index">Elemento ${index + 1}</span> ${item}`;
+                        resultadoDiv.appendChild(itemDiv);
+                    });
+                } else if (tipo === 'objetos') {
+                    contenido.forEach(item => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'array-item';
+                        itemDiv.innerHTML = `<span>${item.nombre}</span> <strong>$${item.precio}</strong>`;
+                        resultadoDiv.appendChild(itemDiv);
+                    });
+                } else if (tipo === 'string') {
+                    const charsDiv = document.createElement('div');
+                    charsDiv.style.display = 'flex';
+                    charsDiv.style.flexWrap = 'wrap';
+                    charsDiv.style.gap = '10px';
+                    
+                    contenido.split('').forEach((char, index) => {
+                        const charDiv = document.createElement('div');
+                        charDiv.className = 'array-item';
+                        charDiv.innerHTML = `<span class="index">${index + 1}</span> '${char}'`;
+                        charsDiv.appendChild(charDiv);
+                    });
+                    
+                    resultadoDiv.appendChild(charsDiv);
+                }
+            }
+    
+            function ejecutarEjemploBasico() {
+                const frutas = ['manzana', 'banana', 'naranja', 'uva'];
+                mostrarResultado('Iteración sobre array de frutas:', frutas);
+            }
+    
+            function ejecutarEjemploObjetos() {
+                const productos = [
+                    { id: 1, nombre: 'Laptop', precio: 999 },
+                    { id: 2, nombre: 'Teléfono', precio: 699 },
+                    { id: 3, nombre: 'Tablet', precio: 399 }
+                ];
+                mostrarResultado('Iteración sobre array de objetos:', productos, 'objetos');
+            }
+    
+            function ejecutarEjemploString() {
+                const texto = "JavaScript";
+                mostrarResultado('Iteración sobre caracteres de un string:', texto, 'string');
+            }
+    
+            function ejecutarArrayPersonalizado() {
+                const input = document.getElementById('arrayInput').value;
+                const elementos = input.split(',').map(item => item.trim());
+                mostrarResultado('Iteración sobre tu array personalizado:', elementos);
+            }
+    
+            function limpiarResultados() {
+                document.getElementById('resultado').innerHTML = '';
+            }
+    
+            // Ejecutar un ejemplo al cargar la página
+            window.onload = ejecutarEjemploBasico;
+        </script>
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="javamain.js"></script>
+</body>
+</html>

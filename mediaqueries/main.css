@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1px;
+}
+
+.encabezado {
+    display: grid;
+    grid-template-columns: 1024px;
+    height: 350px;
+    background-color: #f30808;
+    color: white;
+    padding: 10px;
+}
+.barramenu {
+    display: grid;
+    grid-template-columns: 1024px;
+    height: 150px;
+    background-color: #e9b738;
+    color: white;
+    padding: 10px;
+}
+.vismis {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 200px;
+    color: white;
+    padding: 10px;
+}
+.vision{
+    background: greenyellow
+}
+.mision{
+    background: rosybrown;
+}
+.valores {
+    display: grid;
+    grid-template-columns: 1024px;
+    height: 50px;
+    background-color: #fcb2dd;
+    color: white;
+    padding: 10px;
+}
+.contenido {
+    display: grid;
+    grid-template-columns: 1024px;
+    height: 150px;
+    background-color: #efe7d3;
+    color: white;
+    padding: 10px;
+}
+
+
+
+
+main {
+    padding: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grid-item1 .grid-item3 .grid-item5 {
+   background-color: green;
+}
+.grid-item2 .grid-item4 .grid-item6 {
+    background-color: rgb(222, 254, 222);
+ }
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+
+@media (max-width: 1124px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
